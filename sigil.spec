@@ -2,7 +2,7 @@
 
 Summary:	A free, open source WYSIWYG ebook editor
 Name:		sigil
-Version:	0.2.2
+Version:	0.2.3
 Release:	%mkrel 1
 Url:		http://code.google.com/p/sigil/
 Source0:	http://sigil.googlecode.com/files/Sigil-%version-Code.zip
