@@ -16,7 +16,7 @@ Group:		Office
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}
 BuildRequires:	cmake
 BuildRequires:	qt4-devel >= 4.6.0
-BuildRequires:	boost-devel
+BuildRequires:	boost-devel zlib-devel bzip2-devel
 
 %description
 Sigil is a free, open source WYSIWYG ebook editor.
