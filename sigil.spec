@@ -2,14 +2,14 @@
 
 Summary:	A free, open source WYSIWYG ebook editor
 Name:		sigil
-Version:	0.2.3
+Version:	0.2.4
 Release:	%mkrel 1
 Url:		http://code.google.com/p/sigil/
 Source0:	http://sigil.googlecode.com/files/Sigil-%version-Code.zip
 Patch0:		sigil-0.2.2-fix-format-string.patch
 # from Anssi: this makes it use system libs instead of bundled ones. Except for
 # libtidy which has some local hacks not present in system-provided libtidy.
-Patch1:		sigil-0.2.2-use-system-libs.patch
+Patch1:		sigil-0.2.4-use-system-libs.patch
 # code is GPlv3 and content is CC-BY-SA
 License:	GPLv3 and CC-BY-SA
 Group:		Office
