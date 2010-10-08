@@ -1,22 +1,35 @@
 %define oname Sigil
 
+%define version 0.3.0
+%define prerel RC1
+%define rel 1
+
+%if %prerel
+%define release %mkrel -c %prerel %rel
+%define srcname %oname-%version%prerel
+%else
+%define release %mkrel %rel
+%define srcname %oname-%version
+%endif
+
 Summary:	A free, open source WYSIWYG ebook editor
 Name:		sigil
-Version:	0.2.4
-Release:	%mkrel 1
+Version:	%version
+Release:	%mkrel -c %prerel 1
 Url:		http://code.google.com/p/sigil/
-Source0:	http://sigil.googlecode.com/files/Sigil-%version-Code.zip
+Source0:	http://sigil.googlecode.com/files/%srcname-Code.zip
 Patch0:		sigil-0.2.2-fix-format-string.patch
 # from Anssi: this makes it use system libs instead of bundled ones. Except for
 # libtidy which has some local hacks not present in system-provided libtidy.
-Patch1:		sigil-0.2.4-use-system-libs.patch
+Patch1:		sigil-0.3.0-use-system-libs.patch
 # code is GPlv3 and content is CC-BY-SA
 License:	GPLv3 and CC-BY-SA
 Group:		Office
-BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}
 BuildRequires:	cmake
-BuildRequires:	qt4-devel >= 4.6.0
-BuildRequires:	boost-devel zlib-devel bzip2-devel
+BuildRequires:	qt4-devel >= 4:4.7.0
+BuildRequires:	boost-devel
+BuildRequires:	zlib-devel bzip2-devel
+BuildRequires:	libxerces-c-devel
 
 %description
 Sigil is a free, open source WYSIWYG ebook editor.
