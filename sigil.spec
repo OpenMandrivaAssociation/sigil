@@ -15,7 +15,7 @@
 Summary:	A free, open source WYSIWYG ebook editor
 Name:		sigil
 Version:	%version
-Release:	%rel
+Release:	%release
 Url:		http://code.google.com/p/sigil/
 Source0:	http://sigil.googlecode.com/files/%srcname-Code.zip
 Patch0:		sigil-0.2.2-fix-format-string.patch
@@ -40,6 +40,7 @@ It is designed to edit books in ePub format.
 %patch0 -p0 -b .format-string
 %patch1 -p1 -b .system-libs
 
+rm -fr src/BoostParts
 # fix end of line encoding for the docs:
 sed -i 's/\r//' ChangeLog.txt README.txt COPYING.txt
 
