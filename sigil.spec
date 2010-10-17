@@ -15,7 +15,7 @@
 Summary:	A free, open source WYSIWYG ebook editor
 Name:		sigil
 Version:	%version
-Release:	%mkrel -c %prerel 1
+Release:	%rel
 Url:		http://code.google.com/p/sigil/
 Source0:	http://sigil.googlecode.com/files/%srcname-Code.zip
 Patch0:		sigil-0.2.2-fix-format-string.patch
