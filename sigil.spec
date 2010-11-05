@@ -1,7 +1,7 @@
 %define oname Sigil
 
 %define version 0.3.0
-%define prerel RC2
+%define prerel 0
 %define rel 1
 
 %if %prerel
