@@ -1,6 +1,6 @@
 %define oname Sigil
 
-%define version 0.3.2
+%define version 0.3.4
 %define prerel 0
 %define rel 1
 
@@ -21,7 +21,7 @@ Source0:	http://sigil.googlecode.com/files/%srcname-Code.zip
 Patch0:		sigil-0.2.2-fix-format-string.patch
 # from Anssi: this makes it use system libs instead of bundled ones. Except for
 # libtidy which has some local hacks not present in system-provided libtidy.
-Patch1:		sigil-0.3.0-use-system-libs.patch
+Patch1:		sigil-0.3.4-use-system-libs.patch
 # code is GPlv3 and content is CC-BY-SA
 License:	GPLv3 and CC-BY-SA
 Group:		Office
@@ -86,3 +86,4 @@ rm -rf %{buildroot}
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/*/apps/*.png
+%{_datadir}/pixmaps/*.png
