@@ -2,7 +2,7 @@
 
 %define version 0.3.4
 %define prerel 0
-%define rel 1
+%define rel 2
 
 %if %prerel
 %define release %mkrel -c %prerel %rel
