@@ -1,8 +1,8 @@
 %define oname Sigil
 
-%define version 0.3.4
+%define version 0.4.2
 %define prerel 0
-%define rel 2
+%define rel 1
 
 %if %prerel
 %define release %mkrel -c %prerel %rel
@@ -22,8 +22,8 @@ Patch0:		sigil-0.2.2-fix-format-string.patch
 # from Anssi: this makes it use system libs instead of bundled ones. Except for
 # libtidy which has some local hacks not present in system-provided libtidy.
 Patch1:		sigil-0.3.4-use-system-libs.patch
-# code is GPlv3 and content is CC-BY-SA
-License:	GPLv3 and CC-BY-SA
+# code is GPlv3 and content is CC BY-SA
+License:	GPLv3 and Creative Commons Attribution-ShareAlike
 Group:		Office
 BuildRequires:	cmake
 BuildRequires:	qt4-devel >= 4:4.7.0
@@ -32,12 +32,12 @@ BuildRequires:	zlib-devel bzip2-devel
 BuildRequires:	libxerces-c-devel
 
 %description
-Sigil is a free, open source WYSIWYG ebook editor.
+Sigil is a free, open source WYSIWYG e-book editor.
 It is designed to edit books in ePub format.
 
 %prep
-%setup -q -n %{oname}-%{version}-Code
-%patch0 -p0 -b .format-string
+%setup -q -c -n %{oname}-%{version}-Code
+#patch0 -p0 -b .format-string
 %patch1 -p1 -b .system-libs
 
 rm -fr src/BoostParts
