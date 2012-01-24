@@ -5,19 +5,21 @@
 %define rel 1
 
 %if %prerel
-%define release %mkrel -c %prerel %rel
-%define srcname %oname-%version%prerel
+%define release 0.%{prerel}.%{rel}
+%define srcname %{oname}-%{version}%{prerel}
 %else
-%define release %mkrel %rel
-%define srcname %oname-%version
+%define release %{rel}
+%define srcname %{oname}-%{version}
 %endif
 
 Summary:	A free, open source WYSIWYG ebook editor
 Name:		sigil
-Version:	%version
-Release:	%release
+Version:	%{version}
+Release:	%{release}
 Url:		http://code.google.com/p/sigil/
-Source0:	http://sigil.googlecode.com/files/%srcname-Code.zip
+Source0:	http://sigil.googlecode.com/files/%{srcname}-Code.zip
+Source1:	ru_RU.aff
+Source2:	ru_RU.dic
 # from Anssi: this makes it use system libs instead of bundled ones. Except for
 # libtidy which has some local hacks not present in system-provided libtidy.
 Patch1:		sigil-0.3.4-use-system-libs.patch
@@ -27,7 +29,7 @@ License:	GPLv3 and Creative Commons Attribution-ShareAlike
 Group:		Office
 BuildRequires:	cmake
 BuildRequires:	qt4-devel >= 4:4.7.0
-BuildRequires:	boost-devel
+BuildRequires:	boost-devel >= 1.48.0
 BuildRequires:	zlib-devel bzip2-devel
 BuildRequires:	libxerces-c-devel
 
@@ -36,7 +38,7 @@ Sigil is a free, open source WYSIWYG e-book editor.
 It is designed to edit books in ePub format.
 
 %prep
-%setup -q -c -n %{oname}-%{version}-Code
+%setup -q -c -n %{srcname}-Code
 %patch1 -p1 -b .system-libs
 %patch2 -p1 -b .boost
 
@@ -76,6 +78,9 @@ Exec=%{name} %u
 MimeType=application/epub+zip;
 Categories=Office;
 EOF
+
+# install additional dictionaries
+install -m644 -D %{SOURCE1} %{SOURCE2} %{buildroot}%{_datadir}/%{name}/dictionaries/
 
 %find_lang %{name} --with-qt
 
