@@ -1,6 +1,6 @@
 %define oname Sigil
 
-%define version 0.4.2
+%define version 0.5.0
 %define prerel 0
 %define rel 1
 
@@ -18,7 +18,6 @@ Version:	%version
 Release:	%release
 Url:		http://code.google.com/p/sigil/
 Source0:	http://sigil.googlecode.com/files/%srcname-Code.zip
-Patch0:		sigil-0.2.2-fix-format-string.patch
 # from Anssi: this makes it use system libs instead of bundled ones. Except for
 # libtidy which has some local hacks not present in system-provided libtidy.
 Patch1:		sigil-0.3.4-use-system-libs.patch
@@ -38,7 +37,6 @@ It is designed to edit books in ePub format.
 
 %prep
 %setup -q -c -n %{oname}-%{version}-Code
-#patch0 -p0 -b .format-string
 %patch1 -p1 -b .system-libs
 %patch2 -p1 -b .boost
 
@@ -79,13 +77,16 @@ MimeType=application/epub+zip;
 Categories=Office;
 EOF
 
+%find_lang %{name} --with-qt
+
 %clean
 rm -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-,root,root)
 %doc ChangeLog.txt README.txt COPYING.txt
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/*/apps/*.png
 %{_datadir}/pixmaps/*.png
+%{_datadir}/%{name}/dictionaries
