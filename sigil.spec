@@ -1,6 +1,6 @@
 %define oname Sigil
 
-%define version 0.5.0
+%define version 0.5.3
 %define prerel 0
 %define rel 1
 
@@ -22,8 +22,6 @@ Source1:	ru_RU.aff
 Source2:	ru_RU.dic
 # from Anssi: this makes it use system libs instead of bundled ones. Except for
 # libtidy which has some local hacks not present in system-provided libtidy.
-Patch1:		sigil-0.3.4-use-system-libs.patch
-Patch2:		sigil-0.4.2-mdv-boost.patch
 # code is GPlv3 and content is CC BY-SA
 License:	GPLv3 and Creative Commons Attribution-ShareAlike
 Group:		Office
@@ -32,6 +30,8 @@ BuildRequires:	qt4-devel >= 4:4.7.0
 BuildRequires:	boost-devel >= 1.48.0
 BuildRequires:	zlib-devel bzip2-devel
 BuildRequires:	libxerces-c-devel
+BuildRequires:	hunspell-devel
+BuildRequires:	pcre-devel
 
 %description
 Sigil is a free, open source WYSIWYG e-book editor.
@@ -39,8 +39,6 @@ It is designed to edit books in ePub format.
 
 %prep
 %setup -q -c -n %{srcname}-Code
-%patch1 -p1 -b .system-libs
-%patch2 -p1 -b .boost
 
 rm -fr src/BoostParts
 # fix end of line encoding for the docs:
@@ -55,7 +53,6 @@ sed -i 's/\r//' ChangeLog.txt README.txt COPYING.txt
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std -C build
 
 # install icons for the .desktop file
@@ -84,11 +81,7 @@ install -m644 -D %{SOURCE1} %{SOURCE2} %{buildroot}%{_datadir}/%{name}/dictionar
 
 %find_lang %{name} --with-qt
 
-%clean
-rm -rf %{buildroot}
-
 %files -f %{name}.lang
-%defattr(-,root,root)
 %doc ChangeLog.txt README.txt COPYING.txt
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
