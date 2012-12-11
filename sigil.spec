@@ -88,3 +88,64 @@ install -m644 -D %{SOURCE1} %{SOURCE2} %{buildroot}%{_datadir}/%{name}/dictionar
 %{_iconsdir}/hicolor/*/apps/*.png
 %{_datadir}/pixmaps/*.png
 %{_datadir}/%{name}/dictionaries
+
+
+%changelog
+* Thu Jun 28 2012 Dmitry Mikhirev <dmikhirev@mandriva.org> 0.5.3-1
++ Revision: 807382
+- update to 0.5.3
+
+* Tue Jan 24 2012 Dmitry Mikhirev <dmikhirev@mandriva.org> 0.5.0-1
++ Revision: 767807
+- add Russian dictionaries
+- new version 0.5.0
+
+* Wed Jan 11 2012 Dmitry Mikhirev <dmikhirev@mandriva.org> 0.4.2-1
++ Revision: 759787
+- fixed linking to boost
+- new version 0.4.2
+
+* Thu Mar 17 2011 Funda Wang <fwang@mandriva.org> 0.3.4-2
++ Revision: 645796
+- rebuild for new boost
+
+* Thu Feb 03 2011 Ahmad Samir <ahmadsamir@mandriva.org> 0.3.4-1
++ Revision: 635702
+- update to 0.3.4
+
+* Wed Nov 24 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.3.2-1mdv2011.0
++ Revision: 600474
+- update to 0.3.2
+
+* Mon Nov 08 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.3.1-1mdv2011.0
++ Revision: 595009
+- update to 0.3.1
+
+* Fri Nov 05 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.3.0-1mdv2011.0
++ Revision: 593775
+- update to 0.3.0
+
+* Sun Oct 10 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.3.0-0.RC2.1mdv2011.0
++ Revision: 584546
+- update to 0.3.0RC2
+
+* Sat Oct 09 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.3.0-0.RC1.1mdv2011.0
++ Revision: 584293
+- update to 0.3.0RC1
+- bump qt BR to 4.7.0
+- add BR, libxerces-c-devel
+- rediff patch1 and make the package build with system libxerces-c (thanks to Anssi \o/)
+- modify spec to make packaging rc's easier
+
+* Fri Aug 13 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.2.4-1mdv2011.0
++ Revision: 569342
+- update to 0.2.4
+- rediff patch1
+
+* Wed Jun 23 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.2.3-1mdv2011.0
++ Revision: 548731
+- what do you know? new upstream release 0.2.3
+- add more BR (they're pulled by qt-devel, but I prefer an explicit BR in this case)
+- import sigil
+
+
