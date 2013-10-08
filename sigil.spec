@@ -1,6 +1,5 @@
 %define oname Sigil
 
-%define version 0.5.3
 %define prerel 0
 %define rel 1
 
@@ -14,7 +13,7 @@
 
 Summary:	A free, open source WYSIWYG ebook editor
 Name:		sigil
-Version:	%{version}
+Version:	0.7.2
 Release:	%{release}
 Url:		http://code.google.com/p/sigil/
 Source0:	http://sigil.googlecode.com/files/%{srcname}-Code.zip
@@ -26,12 +25,14 @@ Source2:	ru_RU.dic
 License:	GPLv3 and Creative Commons Attribution-ShareAlike
 Group:		Office
 BuildRequires:	cmake
-BuildRequires:	qt4-devel >= 4:4.7.0
 BuildRequires:	boost-devel >= 1.48.0
 BuildRequires:	zlib-devel bzip2-devel
 BuildRequires:	libxerces-c-devel
 BuildRequires:	hunspell-devel
 BuildRequires:	pcre-devel
+BuildRequires:	pkgconfig(Qt5Core)
+BuildRequires:	qt5-devel
+BuildRequires:	qt5-linguist-tools
 
 %description
 Sigil is a free, open source WYSIWYG e-book editor.
@@ -77,7 +78,7 @@ Categories=Office;
 EOF
 
 # install additional dictionaries
-install -m644 -D %{SOURCE1} %{SOURCE2} %{buildroot}%{_datadir}/%{name}/dictionaries/
+install -m644 -D %{SOURCE1} %{SOURCE2} %{buildroot}%{_datadir}/%{name}/hunspell_dictionaries/
 
 %find_lang %{name} --with-qt
 
@@ -87,65 +88,6 @@ install -m644 -D %{SOURCE1} %{SOURCE2} %{buildroot}%{_datadir}/%{name}/dictionar
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/*/apps/*.png
 %{_datadir}/pixmaps/*.png
-%{_datadir}/%{name}/dictionaries
-
-
-%changelog
-* Thu Jun 28 2012 Dmitry Mikhirev <dmikhirev@mandriva.org> 0.5.3-1
-+ Revision: 807382
-- update to 0.5.3
-
-* Tue Jan 24 2012 Dmitry Mikhirev <dmikhirev@mandriva.org> 0.5.0-1
-+ Revision: 767807
-- add Russian dictionaries
-- new version 0.5.0
-
-* Wed Jan 11 2012 Dmitry Mikhirev <dmikhirev@mandriva.org> 0.4.2-1
-+ Revision: 759787
-- fixed linking to boost
-- new version 0.4.2
-
-* Thu Mar 17 2011 Funda Wang <fwang@mandriva.org> 0.3.4-2
-+ Revision: 645796
-- rebuild for new boost
-
-* Thu Feb 03 2011 Ahmad Samir <ahmadsamir@mandriva.org> 0.3.4-1
-+ Revision: 635702
-- update to 0.3.4
-
-* Wed Nov 24 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.3.2-1mdv2011.0
-+ Revision: 600474
-- update to 0.3.2
-
-* Mon Nov 08 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.3.1-1mdv2011.0
-+ Revision: 595009
-- update to 0.3.1
-
-* Fri Nov 05 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.3.0-1mdv2011.0
-+ Revision: 593775
-- update to 0.3.0
-
-* Sun Oct 10 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.3.0-0.RC2.1mdv2011.0
-+ Revision: 584546
-- update to 0.3.0RC2
-
-* Sat Oct 09 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.3.0-0.RC1.1mdv2011.0
-+ Revision: 584293
-- update to 0.3.0RC1
-- bump qt BR to 4.7.0
-- add BR, libxerces-c-devel
-- rediff patch1 and make the package build with system libxerces-c (thanks to Anssi \o/)
-- modify spec to make packaging rc's easier
-
-* Fri Aug 13 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.2.4-1mdv2011.0
-+ Revision: 569342
-- update to 0.2.4
-- rediff patch1
-
-* Wed Jun 23 2010 Ahmad Samir <ahmadsamir@mandriva.org> 0.2.3-1mdv2011.0
-+ Revision: 548731
-- what do you know? new upstream release 0.2.3
-- add more BR (they're pulled by qt-devel, but I prefer an explicit BR in this case)
-- import sigil
-
+%{_datadir}/%{name}/examples
+%{_datadir}/%{name}/hunspell_dictionaries
 
