@@ -1,7 +1,7 @@
 %define oname Sigil
 
 %define prerel 0
-%define rel 1
+%define rel 2
 
 %if %prerel
 %define release 0.%{prerel}.%{rel}
@@ -33,6 +33,7 @@ BuildRequires:	pcre-devel
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	qt5-devel
 BuildRequires:	qt5-linguist-tools
+Requires:	%mklibname qt5gui5-x11
 
 %description
 Sigil is a free, open source WYSIWYG e-book editor.
