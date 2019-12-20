@@ -5,7 +5,7 @@ Name:		sigil
 Version:	1.0.0
 Release:	1
 Url:		http://sigil-ebook.com/
-Source0:	 https://github.com/Sigil-Ebook/Sigil/archive/%{version}/%{name}-%{version}.tar.gz
+Source0:	 https://github.com/Sigil-Ebook/Sigil/archive/%{version}/%{oname}-%{version}.tar.gz
 License:	GPLv3
 Group:		Office/Utilities
 
