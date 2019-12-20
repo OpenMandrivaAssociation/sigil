@@ -38,9 +38,9 @@ BuildRequires:	pkgconfig(zlib) >= 1.2.7
 BuildRequires:	pkgconfig(minizip)
 BuildRequires:	pkgconfig(python)
 
-Requires:	pythonegg(3)(lxml)
+Requires:	python3egg(lxml)
 
-Requires:	%mklibname qt5gui5-x11
+Recommends:	%mklibname qt5gui5-x11
 
 %description
 Sigil is a free, open source WYSIWYG e-book editor.
