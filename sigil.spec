@@ -1,38 +1,45 @@
 %define oname Sigil
 
-%define prerel 0
-%define rel 2
-
-%if %prerel
-%define release 0.%{prerel}.%{rel}
-%define srcname %{oname}-%{version}%{prerel}
-%else
-%define release %{rel}
-%define srcname %{oname}-%{version}
-%endif
-
 Summary:	A free, open source WYSIWYG ebook editor
 Name:		sigil
-Version:	0.7.2
-Release:	%{release}
-Url:		http://code.google.com/p/sigil/
-Source0:	http://sigil.googlecode.com/files/%{srcname}-Code.zip
-Source1:	ru_RU.aff
-Source2:	ru_RU.dic
-# from Anssi: this makes it use system libs instead of bundled ones. Except for
-# libtidy which has some local hacks not present in system-provided libtidy.
-# code is GPlv3 and content is CC BY-SA
-License:	GPLv3 and Creative Commons Attribution-ShareAlike
-Group:		Office
+Version:	1.0.0
+Release:	1
+Url:		http://sigil-ebook.com/
+Source0:	 https://github.com/Sigil-Ebook/Sigil/archive/%{version}/%{name}-%{version}.tar.gz
+License:	GPLv3
+Group:		Office/Utilities
+
 BuildRequires:	cmake
-BuildRequires:	boost-devel >= 1.48.0
+BuildRequires:	boost-devel
 BuildRequires:	zlib-devel bzip2-devel
 BuildRequires:	libxerces-c-devel
 BuildRequires:	hunspell-devel
 BuildRequires:	pcre-devel
+BuildRequires:  qt5-qttools
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	qt5-devel
 BuildRequires:	qt5-linguist-tools
+BuildRequires:	pkgconfig(Qt5Concurrent) 
+BuildRequires:	pkgconfig(Qt5Gui)
+BuildRequires:	pkgconfig(Qt5Help)
+BuildRequires:	pkgconfig(Qt5Network)
+BuildRequires:	pkgconfig(Qt5PrintSupport)
+BuildRequires:	pkgconfig(Qt5Qml)
+BuildRequires:	pkgconfig(Qt5Quick)
+BuildRequires:	pkgconfig(Qt5Svg)
+BuildRequires:	pkgconfig(Qt5WebEngine)
+BuildRequires:	pkgconfig(Qt5WebEngineWidgets)
+BuildRequires:	pkgconfig(Qt5Widgets)
+BuildRequires:	pkgconfig(Qt5Xml)
+BuildRequires:	pkgconfig(Qt5XmlPatterns)
+BuildRequires:	pkgconfig(hunspell) >= 1.3.2
+BuildRequires:	pkgconfig(libpcre) >= 8.31
+BuildRequires:	pkgconfig(zlib) >= 1.2.7
+BuildRequires:	pkgconfig(minizip)
+BuildRequires:	pkgconfig(python)
+
+Requires:	pythonegg(3)(lxml)
+
 Requires:	%mklibname qt5gui5-x11
 
 %description
@@ -40,55 +47,40 @@ Sigil is a free, open source WYSIWYG e-book editor.
 It is designed to edit books in ePub format.
 
 %prep
-%setup -q -c -n %{srcname}-Code
-
-rm -fr src/BoostParts
-# fix end of line encoding for the docs:
-sed -i 's/\r//' ChangeLog.txt README.txt COPYING.txt
+%setup -q -n %{oname}-%{version}
+%autopatch -p1
 
 %build
 # there are only internal helper libs, and they need to be static as build
 # fails otherwise (they contain undefined symbols), and making them shared
 # libs wouldn't make sense anyway (they are not shared by anything else)
 # - Anssi 06/2010
-%cmake -G "Unix Makefiles" -DBUILD_SHARED_LIBS:BOOL=OFF -DBUILD_STATIC_LIBS:BOOL=ON
-%make
+%cmake_qt5 \
+	-DSHARE_INSTALL_PREFIX=%{_prefix} \
+	-DUSE_SYSTEM_LIBS:BOOL=ON \
+	-DBUILD_SHARED_LIBS:BOOL=OFF
+%make_build
 
 %install
-%makeinstall_std -C build
+%make_install -C build
+
+find %{buildroot} -name 'opf_newparser.py' -exec sed -i -e 's|#!/usr/bin/env python|#!/usr/bin/env python3|g' {} \;
+find %{buildroot} -name 'sanitycheck.py' -exec sed -i -e 's|#!/usr/bin/env python|#!/usr/bin/env python3|g' {} \;
 
 # install icons for the .desktop file
-install -m644 -D src/Sigil/Resource_Files/icon/app_icon_16.png %{buildroot}%{_iconsdir}/hicolor/16x16/apps/sigil.png
-install -m644 -D src/Sigil/Resource_Files/icon/app_icon_32.png %{buildroot}%{_iconsdir}/hicolor/32x32/apps/sigil.png
-install -m644 -D src/Sigil/Resource_Files/icon/app_icon_48.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/sigil.png
-install -m644 -D src/Sigil/Resource_Files/icon/app_icon_128.png %{buildroot}%{_iconsdir}/hicolor/128x128/apps/sigil.png
-install -m644 -D src/Sigil/Resource_Files/icon/app_icon_256.png %{buildroot}%{_iconsdir}/hicolor/256x256/apps/sigil.png
+install -m644 -D src/Resource_Files/icon/app_icon_16.png %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
+install -m644 -D src/Resource_Files/icon/app_icon_32.png %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
+install -m644 -D src/Resource_Files/icon/app_icon_48.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}.png
+install -m644 -D src/Resource_Files/icon/app_icon_128.png %{buildroot}%{_iconsdir}/hicolor/128x128/apps/%{name}.png
+install -m644 -D src/Resource_Files/icon/app_icon_256.png %{buildroot}%{_iconsdir}/hicolor/256x256/apps/%{name}.png
 
-# create a .desktop file:
-mkdir -p %{buildroot}%{_datadir}/applications
-
-cat > %{buildroot}%{_datadir}/applications/%{name}.desktop << EOF
-[Desktop Entry]
-Type=Application
-Name=%{oname}
-Comment=WYSIWYG ebook editor
-Icon=%{name}
-Exec=%{name} %u
-MimeType=application/epub+zip;
-Categories=Office;
-EOF
-
-# install additional dictionaries
-install -m644 -D %{SOURCE1} %{SOURCE2} %{buildroot}%{_datadir}/%{name}/hunspell_dictionaries/
-
-%find_lang %{name} --with-qt
-
-%files -f %{name}.lang
-%doc ChangeLog.txt README.txt COPYING.txt
+%files
+%doc ChangeLog.txt README.md
+%license COPYING.txt
 %{_bindir}/%{name}
+%{_libdir}/%{name}/
+%{_datadir}/%{name}/
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/*/apps/*.png
 %{_datadir}/pixmaps/*.png
-%{_datadir}/%{name}/examples
-%{_datadir}/%{name}/hunspell_dictionaries
 
