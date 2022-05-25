@@ -36,7 +36,7 @@ BuildRequires:	pkgconfig(hunspell) >= 1.3.2
 BuildRequires:	pkgconfig(libpcre) >= 8.31
 BuildRequires:	pkgconfig(libpcre2-16)
 BuildRequires:	pkgconfig(zlib) >= 1.2.7
-BuildRequires:	pkgconfig(minizip)
+#BuildRequires:	pkgconfig(minizip)
 BuildRequires:	pkgconfig(python)
 
 Requires:	python3egg(lxml)
