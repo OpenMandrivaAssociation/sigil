@@ -5,7 +5,7 @@ Name:		sigil
 Version:	1.9.10
 Release:	1
 Url:		http://sigil-ebook.com/
-Source0:	 https://github.com/Sigil-Ebook/Sigil/archive/%{version}/%{oname}-%{version}.tar.gz
+Source0:	https://github.com/Sigil-Ebook/Sigil/archive/%{version}/%{oname}-%{version}.tar.gz
 License:	GPLv3
 Group:		Office/Utilities
 
@@ -52,6 +52,8 @@ It is designed to edit books in ePub format.
 %autopatch -p1
 
 %build
+export CC=gcc
+export CXX=g++
 # there are only internal helper libs, and they need to be static as build
 # fails otherwise (they contain undefined symbols), and making them shared
 # libs wouldn't make sense anyway (they are not shared by anything else)
