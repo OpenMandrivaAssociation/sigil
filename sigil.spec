@@ -60,7 +60,7 @@ export CXX=g++
 # - Anssi 06/2010
 %cmake_qt5 \
 	-DSHARE_INSTALL_PREFIX=%{_prefix} \
-	-DUSE_SYSTEM_LIBS=0 \
+	-DUSE_SYSTEM_LIBS=1 \
 	-DBUILD_SHARED_LIBS:BOOL=OFF
 %make_build
 
