@@ -40,7 +40,7 @@ BuildRequires:	pkgconfig(zlib) >= 1.2.7
 BuildRequires:	pkgconfig(minizip)
 BuildRequires:	pkgconfig(python)
 
-Requires:	python3egg(lxml)
+Requires:	python3dist(lxml)
 
 Recommends:	%mklibname qt5gui5-x11
 
