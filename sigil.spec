@@ -9,7 +9,7 @@ Source0:	https://github.com/Sigil-Ebook/Sigil/archive/%{version}/%{oname}-%{vers
 License:	GPLv3
 Group:		Office/Utilities
 
-Patch0:		sigil-1.9.20-compile.patch
+Patch0:		sigil-1.9.30-compile.patch
 
 BuildRequires:	cmake ninja
 BuildRequires:	boost-devel
