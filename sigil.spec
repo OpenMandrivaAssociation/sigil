@@ -3,7 +3,7 @@
 Summary:	A free, open source WYSIWYG ebook editor
 Name:		sigil
 Version:	1.9.30
-Release:	1
+Release:	2
 Url:		http://sigil-ebook.com/
 Source0:	https://github.com/Sigil-Ebook/Sigil/archive/%{version}/%{oname}-%{version}.tar.gz
 License:	GPLv3
