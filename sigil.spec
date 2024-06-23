@@ -20,6 +20,7 @@ BuildRequires:	hunspell-devel
 BuildRequires:	pcre-devel
 BuildRequires:  qt6-qttools
 BuildRequires:	pkgconfig(Qt6Core)
+BuildRequires:	pkgconfig(Qt6Core5Compat)
 BuildRequires:	pkgconfig(Qt6Linguist)
 BuildRequires:	pkgconfig(Qt6Concurrent) 
 BuildRequires:	pkgconfig(Qt6Gui)
