@@ -19,9 +19,8 @@ BuildRequires:	libxerces-c-devel
 BuildRequires:	hunspell-devel
 BuildRequires:	pcre-devel
 BuildRequires:  qt6-qttools
-BuildRequires:	pkgconfig(Qt5Core)
-#BuildRequires:	qt5-devel
-BuildRequires:	qt6-linguist-tools
+BuildRequires:	pkgconfig(Qt6Core)
+BuildRequires:	pkgconfig(Qt6Linguist)
 BuildRequires:	pkgconfig(Qt6Concurrent) 
 BuildRequires:	pkgconfig(Qt6Gui)
 BuildRequires:	pkgconfig(Qt6Help)
@@ -30,11 +29,10 @@ BuildRequires:	pkgconfig(Qt6PrintSupport)
 BuildRequires:	pkgconfig(Qt6Qml)
 BuildRequires:	pkgconfig(Qt6Quick)
 BuildRequires:	pkgconfig(Qt6Svg)
-BuildRequires:	pkgconfig(Qt6WebEngine)
+BuildRequires:	pkgconfig(Qt6WebEngineCore)
 BuildRequires:	pkgconfig(Qt6WebEngineWidgets)
 BuildRequires:	pkgconfig(Qt6Widgets)
 BuildRequires:	pkgconfig(Qt6Xml)
-#BuildRequires:	pkgconfig(Qt6XmlPatterns)
 BuildRequires:	pkgconfig(hunspell) >= 1.3.2
 BuildRequires:	pkgconfig(libpcre) >= 8.31
 BuildRequires:	pkgconfig(zlib) >= 1.2.7
