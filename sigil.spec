@@ -53,7 +53,7 @@ It is designed to edit books in ePub format.
 # fails otherwise (they contain undefined symbols), and making them shared
 # libs wouldn't make sense anyway (they are not shared by anything else)
 # - Anssi 06/2010
-%cmake_qt5 \
+%cmake \
 	-DSHARE_INSTALL_PREFIX=%{_prefix} \
 	-DUSE_SYSTEM_LIBS:BOOL=ON \
 	-DBUILD_SHARED_LIBS:BOOL=OFF \
