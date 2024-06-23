@@ -2,7 +2,7 @@
 
 Summary:	A free, open source WYSIWYG ebook editor
 Name:		sigil
-Version:	2.2.0
+Version:	2.2.1
 Release:	1
 Url:		http://sigil-ebook.com/
 Source0:	https://github.com/Sigil-Ebook/Sigil/archive/%{version}/%{oname}-%{version}.tar.gz
@@ -11,29 +11,30 @@ Group:		Office/Utilities
 
 Patch0:		sigil-1.9.30-compile.patch
 
+BuildRequires:	cmake(Qt6)
 BuildRequires:	cmake ninja
 BuildRequires:	boost-devel
 BuildRequires:	zlib-devel bzip2-devel
 BuildRequires:	libxerces-c-devel
 BuildRequires:	hunspell-devel
 BuildRequires:	pcre-devel
-BuildRequires:  qt5-qttools
+BuildRequires:  qt6-qttools
 BuildRequires:	pkgconfig(Qt5Core)
-BuildRequires:	qt5-devel
-BuildRequires:	qt5-linguist-tools
-BuildRequires:	pkgconfig(Qt5Concurrent) 
-BuildRequires:	pkgconfig(Qt5Gui)
-BuildRequires:	pkgconfig(Qt5Help)
-BuildRequires:	pkgconfig(Qt5Network)
-BuildRequires:	pkgconfig(Qt5PrintSupport)
-BuildRequires:	pkgconfig(Qt5Qml)
-BuildRequires:	pkgconfig(Qt5Quick)
-BuildRequires:	pkgconfig(Qt5Svg)
-BuildRequires:	pkgconfig(Qt5WebEngine)
-BuildRequires:	pkgconfig(Qt5WebEngineWidgets)
-BuildRequires:	pkgconfig(Qt5Widgets)
-BuildRequires:	pkgconfig(Qt5Xml)
-BuildRequires:	pkgconfig(Qt5XmlPatterns)
+#BuildRequires:	qt5-devel
+BuildRequires:	qt6-linguist-tools
+BuildRequires:	pkgconfig(Qt6Concurrent) 
+BuildRequires:	pkgconfig(Qt6Gui)
+BuildRequires:	pkgconfig(Qt6Help)
+BuildRequires:	pkgconfig(Qt6Network)
+BuildRequires:	pkgconfig(Qt6PrintSupport)
+BuildRequires:	pkgconfig(Qt6Qml)
+BuildRequires:	pkgconfig(Qt6Quick)
+BuildRequires:	pkgconfig(Qt6Svg)
+BuildRequires:	pkgconfig(Qt6WebEngine)
+BuildRequires:	pkgconfig(Qt6WebEngineWidgets)
+BuildRequires:	pkgconfig(Qt6Widgets)
+BuildRequires:	pkgconfig(Qt6Xml)
+#BuildRequires:	pkgconfig(Qt6XmlPatterns)
 BuildRequires:	pkgconfig(hunspell) >= 1.3.2
 BuildRequires:	pkgconfig(libpcre) >= 8.31
 BuildRequires:	pkgconfig(zlib) >= 1.2.7
