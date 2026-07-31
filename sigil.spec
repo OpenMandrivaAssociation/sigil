@@ -2,7 +2,7 @@
 
 Summary:	A free, open source WYSIWYG ebook editor
 Name:		sigil
-Version:	2.7.0
+Version:	2.8.1
 Release:	1
 Url:		https://sigil-ebook.com/
 Source0:	https://github.com/Sigil-Ebook/Sigil/archive/%{version}/%{oname}-%{version}.tar.gz
@@ -49,7 +49,7 @@ Sigil is a free, open source WYSIWYG e-book editor.
 It is designed to edit books in ePub format.
 
 %prep
-%autosetup -p1 -n %{oname}-%{version}
+%autosetup -p1 -n Sigil-2.8.1
 # there are only internal helper libs, and they need to be static as build
 # fails otherwise (they contain undefined symbols), and making them shared
 # libs wouldn't make sense anyway (they are not shared by anything else)
