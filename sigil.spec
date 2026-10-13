@@ -38,9 +38,9 @@ BuildRequires:	pkgconfig(hunspell) >= 1.3.2
 BuildRequires:	pkgconfig(libpcre) >= 8.31
 BuildRequires:	pkgconfig(zlib) >= 1.2.7
 BuildRequires:	pkgconfig(minizip)
-BuildRequires:	pkgconfig(python)
+BuildRequires:	pkgconfig(python3)
 
-Requires:	python3dist(lxml)
+Requires:	python%{pyver}dist(lxml)
 
 Recommends:	%mklibname qt5gui5-x11
 
@@ -65,9 +65,6 @@ It is designed to edit books in ePub format.
 
 %install
 %ninja_install -C build
-
-find %{buildroot} -name 'opf_newparser.py' -exec sed -i -e 's|#!/usr/bin/env python|#!/usr/bin/env python3|g' {} \;
-find %{buildroot} -name 'sanitycheck.py' -exec sed -i -e 's|#!/usr/bin/env python|#!/usr/bin/env python3|g' {} \;
 
 # install icons for the .desktop file
 install -m644 -D src/Resource_Files/icon/app_icons_orig/app_icon_16.png %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
